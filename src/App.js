@@ -29,14 +29,21 @@ function Form() {
 
   function handleSubmit(e) {
     e.preventDefault();
-    
+
+    if (!description) return;
+
+    const newItem = { description, quantity, packed: false, id: Date.now() }
+    console.log(newItem);
+
+    setDescription("");
+    setQuantity(1);
   }
 
   return (
     <form className="add-form" onSubmit={handleSubmit}>
       <h3>What do you need for your 😍 trip?</h3>
       <select
-        onChange={e => setQuantity(e.target.value) }
+        onChange={e => setQuantity(Number(e.target.value)) }
         value={quantity}
       >
         {Array.from({ length: 20 }, (_, i) => i + 1)
